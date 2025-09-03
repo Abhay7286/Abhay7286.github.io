@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhay Mishra - Crafting Digital Experiences</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'space': ['Space Grotesk', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        'electric': '#00D9FF',
+                        'neon': '#FF0080',
+                        'cyber': '#39FF14',
+                        'deep': '#0A0A0F',
+                        'slate': '#1A1A2E'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; }
+        .glow-text { text-shadow: 0 0 20px currentColor; }
+        .neon-border { box-shadow: 0 0 20px rgba(0, 217, 255, 0.5), inset 0 0 20px rgba(0, 217, 255, 0.1); }
+        .cyber-grid { background-image: linear-gradient(rgba(0, 217, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 217, 255, 0.1) 1px, transparent 1px); background-size: 50px 50px; }
+        .floating { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        .slide-in { animation: slideIn 0.8s ease-out forwards; opacity: 0; transform: translateX(-50px); }
+        @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
+        .code-block { background: linear-gradient(135deg, #0A0A0F 0%, #1A1A2E 100%); border: 1px solid rgba(0, 217, 255, 0.3); }
+        .project-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .project-hover:hover { transform: scale(1.05) rotateY(5deg); }
+        .skill-orb { background: radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.8), rgba(255, 0, 128, 0.6)); }
+        .terminal-cursor { animation: blink 1s infinite; }
+        @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+    </style>
+</head>
+<body class="bg-deep text-white overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-deep/80 backdrop-blur-xl border-b border-electric/20">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="font-mono text-xl font-bold text-electric glow-text">
+                    &lt;abhay.dev/&gt;
+                </div>
+                <div class="hidden md:flex space-x-8 font-mono text-sm">
+                    <a href="#hero" class="text-gray-300 hover:text-electric transition-colors duration-300">[home]</a>
+                    <a href="#about" class="text-gray-300 hover:text-electric transition-colors duration-300">[about]</a>
+                    <a href="#projects" class="text-gray-300 hover:text-electric transition-colors duration-300">[projects]</a>
+                    <a href="#skills" class="text-gray-300 hover:text-electric transition-colors duration-300">[skills]</a>
+                    <a href="#contact" class="text-gray-300 hover:text-electric transition-colors duration-300">[contact]</a>
+                </div>
+                <button id="mobile-menu" class="md:hidden text-electric">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative cyber-grid">
+        <div class="absolute inset-0 bg-gradient-to-br from-deep via-slate to-deep opacity-90"></div>
+        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+            <!-- Avatar -->
+            <div class="mb-16 floating">
+                <div class="w-48 h-48 mx-auto relative">
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-br from-electric via-neon to-cyber animate-spin" style="animation-duration: 8s;"></div>
+                    <div class="absolute inset-3 rounded-full bg-deep flex items-center justify-center">
+                        <div class="w-36 h-36 rounded-full bg-gradient-to-br from-electric/20 to-neon/20 flex items-center justify-center text-5xl font-bold text-electric glow-text">
+                            AM
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bold Personal Statement -->
+            <div class="mb-8">
+                <h1 class="text-6xl md:text-8xl font-bold mb-6 slide-in">
+                    <span class="text-electric glow-text">I DON'T JUST</span><br>
+                    <span class="text-neon glow-text">CODE</span><br>
+                    <span class="text-cyber glow-text">I CREATE</span>
+                </h1>
+                <div class="font-mono text-lg md:text-xl text-gray-300 mb-8 slide-in" style="animation-delay: 0.3s;">
+                    <span class="text-electric">&gt;</span> Building the impossible, one algorithm at a time
+                    <span class="terminal-cursor text-cyber">|</span>
+                </div>
+            </div>
+
+            <!-- Dynamic Statement -->
+            <div class="max-w-4xl mx-auto mb-12 slide-in" style="animation-delay: 0.6s;">
+                <p class="text-xl md:text-2xl leading-relaxed text-gray-300">
+                    I'm <span class="text-electric font-semibold">Abhay Mishra</span>, a software alchemist who transforms 
+                    <span class="text-neon">complex problems</span> into <span class="text-cyber">elegant solutions</span>. 
+                    Currently engineering the future at <span class="text-electric">JarGoan</span> and 
+                    <span class="text-neon">Level SuperMind</span>, while pursuing my Bachelor's in Engineering.
+                </p>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-6 justify-center slide-in" style="animation-delay: 0.9s;">
+                <button class="group bg-gradient-to-r from-electric to-neon px-8 py-4 rounded-lg font-semibold text-deep hover:shadow-2xl hover:shadow-electric/50 transition-all duration-300 transform hover:scale-105">
+                    <span class="group-hover:text-white transition-colors">Explore My Universe</span>
+                </button>
+                <button class="border-2 border-electric text-electric px-8 py-4 rounded-lg font-semibold hover:bg-electric hover:text-deep transition-all duration-300 neon-border">
+                    Download Resume
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - Unique Layout -->
+    <section id="about" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: Terminal-style About -->
+                <div class="code-block rounded-2xl p-8 neon-border">
+                    <div class="flex items-center mb-6">
+                        <div class="flex space-x-2 mr-4">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <span class="font-mono text-sm text-gray-400">about_abhay.js</span>
+                    </div>
+                    <div class="font-mono text-sm space-y-2">
+                        <div><span class="text-neon">const</span> <span class="text-electric">developer</span> = {</div>
+                        <div class="ml-4"><span class="text-cyber">name:</span> <span class="text-yellow-300">"Abhay Mishra"</span>,</div>
+                        <div class="ml-4"><span class="text-cyber">role:</span> <span class="text-yellow-300">"Full-Stack Wizard"</span>,</div>
+                        <div class="ml-4"><span class="text-cyber">passion:</span> [<span class="text-yellow-300">"AI"</span>, <span class="text-yellow-300">"Innovation"</span>, <span class="text-yellow-300">"Problem Solving"</span>],</div>
+                        <div class="ml-4"><span class="text-cyber">currentFocus:</span> <span class="text-yellow-300">"AI-Driven Applications"</span>,</div>
+                        <div class="ml-4"><span class="text-cyber">achievements:</span> [</div>
+                        <div class="ml-8"><span class="text-yellow-300">"National Hackathon Winner"</span>,</div>
+                        <div class="ml-8"><span class="text-yellow-300">"OpenAI Integration Expert"</span>,</div>
+                        <div class="ml-8"><span class="text-yellow-300">"AWS Cloud Specialist"</span></div>
+                        <div class="ml-4">],</div>
+                        <div class="ml-4"><span class="text-cyber">motto:</span> <span class="text-yellow-300">"Code with purpose, build with passion"</span></div>
+                        <div>};</div>
+                    </div>
+                </div>
+
+                <!-- Right: Visual Stats -->
+                <div class="space-y-8">
+                    <h2 class="text-5xl font-bold text-electric glow-text mb-8">The Numbers</h2>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center p-6 rounded-xl bg-gradient-to-br from-electric/10 to-transparent border border-electric/30">
+                            <div class="text-4xl font-bold text-electric mb-2">50+</div>
+                            <div class="text-gray-300">Projects Built</div>
+                        </div>
+                        <div class="text-center p-6 rounded-xl bg-gradient-to-br from-neon/10 to-transparent border border-neon/30">
+                            <div class="text-4xl font-bold text-neon mb-2">3+</div>
+                            <div class="text-gray-300">Years Coding</div>
+                        </div>
+                        <div class="text-center p-6 rounded-xl bg-gradient-to-br from-cyber/10 to-transparent border border-cyber/30">
+                            <div class="text-4xl font-bold text-cyber mb-2">15+</div>
+                            <div class="text-gray-300">Technologies</div>
+                        </div>
+                        <div class="text-center p-6 rounded-xl bg-gradient-to-br from-electric/10 to-transparent border border-electric/30">
+                            <div class="text-4xl font-bold text-electric mb-2">∞</div>
+                            <div class="text-gray-300">Possibilities</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section - Interactive Showcase -->
+    <section id="projects" class="py-20 bg-slate/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-6xl font-bold text-center mb-4">
+                <span class="text-neon glow-text">Featured</span> 
+                <span class="text-electric glow-text">Creations</span>
+            </h2>
+            <p class="text-center text-gray-300 mb-16 font-mono">Where innovation meets execution</p>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Project 1: Peekaboo -->
+                <div class="project-hover group">
+                    <div class="bg-gradient-to-br from-deep to-slate rounded-2xl overflow-hidden neon-border">
+                        <!-- Project Visual -->
+                        <div class="h-64 bg-gradient-to-br from-electric/20 via-neon/20 to-cyber/20 relative overflow-hidden">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-6xl font-bold text-electric/50 group-hover:scale-110 transition-transform duration-500">
+                                    👁️‍🗨️
+                                </div>
+                            </div>
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-electric text-deep px-3 py-1 rounded-full text-sm font-semibold">AI-Powered</span>
+                            </div>
+                        </div>
+                        
+                        <div class="p-8">
+                            <h3 class="text-3xl font-bold text-electric mb-4">Peekaboo</h3>
+                            <p class="text-gray-300 mb-6 leading-relaxed">
+                                Revolutionary AI application that transforms data analysis through intelligent pattern recognition 
+                                and automated insights generation. Built with cutting-edge machine learning algorithms.
+                            </p>
+                            
+                            <!-- Tech Stack -->
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-electric/20 text-electric px-3 py-1 rounded-full text-sm border border-electric/30">OpenAI API</span>
+                                <span class="bg-neon/20 text-neon px-3 py-1 rounded-full text-sm border border-neon/30">React.js</span>
+                                <span class="bg-cyber/20 text-cyber px-3 py-1 rounded-full text-sm border border-cyber/30">Node.js</span>
+                                <span class="bg-electric/20 text-electric px-3 py-1 rounded-full text-sm border border-electric/30">ML Algorithms</span>
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <button class="bg-gradient-to-r from-electric to-neon text-deep px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-electric/30 transition-all duration-300">
+                                    Live Demo
+                                </button>
+                                <button class="border border-electric text-electric px-6 py-2 rounded-lg hover:bg-electric hover:text-deep transition-all duration-300">
+                                    Source Code
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Huntly -->
+                <div class="project-hover group">
+                    <div class="bg-gradient-to-br from-deep to-slate rounded-2xl overflow-hidden neon-border">
+                        <!-- Project Visual -->
+                        <div class="h-64 bg-gradient-to-br from-neon/20 via-electric/20 to-cyber/20 relative overflow-hidden">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-6xl font-bold text-neon/50 group-hover:scale-110 transition-transform duration-500">
+                                    🎯
+                                </div>
+                            </div>
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-neon text-white px-3 py-1 rounded-full text-sm font-semibold">Full-Stack</span>
+                            </div>
+                        </div>
+                        
+                        <div class="p-8">
+                            <h3 class="text-3xl font-bold text-neon mb-4">Huntly</h3>
+                            <p class="text-gray-300 mb-6 leading-relaxed">
+                                Next-generation job hunting platform powered by AI matching algorithms. Features intelligent 
+                                resume parsing, skill assessment, and personalized opportunity recommendations.
+                            </p>
+                            
+                            <!-- Tech Stack -->
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-neon/20 text-neon px-3 py-1 rounded-full text-sm border border-neon/30">AI Matching</span>
+                                <span class="bg-electric/20 text-electric px-3 py-1 rounded-full text-sm border border-electric/30">MongoDB</span>
+                                <span class="bg-cyber/20 text-cyber px-3 py-1 rounded-full text-sm border border-cyber/30">AWS</span>
+                                <span class="bg-neon/20 text-neon px-3 py-1 rounded-full text-sm border border-neon/30">React.js</span>
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <button class="bg-gradient-to-r from-neon to-electric text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-neon/30 transition-all duration-300">
+                                    Explore Platform
+                                </button>
+                                <button class="border border-neon text-neon px-6 py-2 rounded-lg hover:bg-neon hover:text-white transition-all duration-300">
+                                    View Code
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section - Orbital Design -->
+    <section id="skills" class="py-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-6xl font-bold mb-16">
+                <span class="text-cyber glow-text">Tech</span> 
+                <span class="text-electric glow-text">Arsenal</span>
+            </h2>
+
+            <!-- Central Hub -->
+            <div class="relative flex items-center justify-center mb-20">
+                <div class="w-32 h-32 rounded-full skill-orb flex items-center justify-center text-2xl font-bold text-white shadow-2xl floating">
+                    CORE
+                </div>
+
+                <!-- Orbiting Skills -->
+                <div class="absolute inset-0 animate-spin" style="animation-duration: 20s;">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-16">
+                        <div class="bg-electric text-deep px-4 py-2 rounded-full font-semibold shadow-lg">JavaScript</div>
+                    </div>
+                    <div class="absolute top-1/2 right-0 transform translate-x-16 -translate-y-1/2">
+                        <div class="bg-neon text-white px-4 py-2 rounded-full font-semibold shadow-lg">React.js</div>
+                    </div>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-16">
+                        <div class="bg-cyber text-deep px-4 py-2 rounded-full font-semibold shadow-lg">Node.js</div>
+                    </div>
+                    <div class="absolute top-1/2 left-0 transform -translate-x-16 -translate-y-1/2">
+                        <div class="bg-electric text-deep px-4 py-2 rounded-full font-semibold shadow-lg">MongoDB</div>
+                    </div>
+                </div>
+
+                <div class="absolute inset-0 animate-spin" style="animation-duration: 30s; animation-direction: reverse;">
+                    <div class="absolute top-8 right-8">
+                        <div class="bg-neon/80 text-white px-3 py-1 rounded-full text-sm font-semibold">AWS</div>
+                    </div>
+                    <div class="absolute bottom-8 right-8">
+                        <div class="bg-cyber/80 text-deep px-3 py-1 rounded-full text-sm font-semibold">PostgreSQL</div>
+                    </div>
+                    <div class="absolute bottom-8 left-8">
+                        <div class="bg-electric/80 text-deep px-3 py-1 rounded-full text-sm font-semibold">OpenAI API</div>
+                    </div>
+                    <div class="absolute top-8 left-8">
+                        <div class="bg-neon/80 text-white px-3 py-1 rounded-full text-sm font-semibold">Git</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skill Categories -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-electric/10 to-transparent p-6 rounded-xl border border-electric/30">
+                    <h3 class="text-2xl font-bold text-electric mb-4">Frontend Mastery</h3>
+                    <div class="space-y-2 text-gray-300">
+                        <div>React.js • Next.js • TypeScript</div>
+                        <div>Tailwind CSS • Responsive Design</div>
+                        <div>Interactive Animations</div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-neon/10 to-transparent p-6 rounded-xl border border-neon/30">
+                    <h3 class="text-2xl font-bold text-neon mb-4">Backend Power</h3>
+                    <div class="space-y-2 text-gray-300">
+                        <div>Node.js • Express.js • APIs</div>
+                        <div>MongoDB • PostgreSQL</div>
+                        <div>Cloud Architecture • AWS</div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-cyber/10 to-transparent p-6 rounded-xl border border-cyber/30">
+                    <h3 class="text-2xl font-bold text-cyber mb-4">AI Integration</h3>
+                    <div class="space-y-2 text-gray-300">
+                        <div>OpenAI API • Machine Learning</div>
+                        <div>Data Structures • Algorithms</div>
+                        <div>Problem Solving • Innovation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section - Futuristic Form -->
+    <section id="contact" class="py-20 bg-slate/30">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-6xl font-bold mb-4">
+                    <span class="text-electric glow-text">Let's</span> 
+                    <span class="text-neon glow-text">Connect</span>
+                </h2>
+                <p class="text-xl text-gray-300 font-mono">Ready to build something extraordinary together?</p>
+            </div>
+
+            <div class="code-block rounded-2xl p-8 neon-border">
+                <div class="flex items-center mb-6">
+                    <div class="flex space-x-2 mr-4">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <span class="font-mono text-sm text-gray-400">contact_form.jsx</span>
+                </div>
+
+                <form class="space-y-6" id="contact-form">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block font-mono text-sm text-electric mb-2">const name =</label>
+                            <input type="text" class="w-full bg-deep/50 border border-electric/30 rounded-lg px-4 py-3 text-white focus:border-electric focus:outline-none focus:ring-2 focus:ring-electric/20 transition-all duration-300" placeholder='"Your Name"' required>
+                        </div>
+                        <div>
+                            <label class="block font-mono text-sm text-neon mb-2">const email =</label>
+                            <input type="email" class="w-full bg-deep/50 border border-neon/30 rounded-lg px-4 py-3 text-white focus:border-neon focus:outline-none focus:ring-2 focus:ring-neon/20 transition-all duration-300" placeholder='"your@email.com"' required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-mono text-sm text-cyber mb-2">const message =</label>
+                        <textarea rows="6" class="w-full bg-deep/50 border border-cyber/30 rounded-lg px-4 py-3 text-white focus:border-cyber focus:outline-none focus:ring-2 focus:ring-cyber/20 transition-all duration-300" placeholder='"Tell me about your project..."' required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-gradient-to-r from-electric via-neon to-cyber text-deep px-12 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-electric/30 transition-all duration-300 transform hover:scale-105">
+                            Execute Connection()
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Contact Links -->
+            <div class="flex justify-center space-x-8 mt-12">
+                <a href="mailto:abhay.mishra@email.com" class="text-electric hover:text-white transition-colors duration-300 flex items-center space-x-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                    </svg>
+                    <span class="font-mono">Email</span>
+                </a>
+                <a href="#" class="text-neon hover:text-white transition-colors duration-300 flex items-center space-x-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <span class="font-mono">LinkedIn</span>
+                </a>
+                <a href="#" class="text-cyber hover:text-white transition-colors duration-300 flex items-center space-x-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <span class="font-mono">GitHub</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-deep border-t border-electric/20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="font-mono text-electric text-xl mb-4 glow-text">&lt;/abhay.dev&gt;</div>
+            <p class="text-gray-400 font-mono text-sm">
+                Crafted with <span class="text-neon">❤️</span> and lots of <span class="text-cyber">☕</span> • © 2024 Abhay Mishra
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            // Mobile menu functionality would go here
+            console.log('Mobile menu clicked');
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const message = this.querySelector('textarea').value;
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            
+            // Show success message
+            alert('Message sent successfully! I\'ll get back to you soon.');
+            this.reset();
+        });
+
+        // Add scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('slide-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Dynamic background particles (optional enhancement)
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'fixed w-1 h-1 bg-electric rounded-full pointer-events-none z-0';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = '100vh';
+            particle.style.opacity = Math.random() * 0.5 + 0.2;
+            document.body.appendChild(particle);
+
+            const animation = particle.animate([
+                { transform: 'translateY(0px)', opacity: particle.style.opacity },
+                { transform: 'translateY(-100vh)', opacity: 0 }
+            ], {
+                duration: Math.random() * 3000 + 2000,
+                easing: 'linear'
+            });
+
+            animation.onfinish = () => particle.remove();
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 300);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'979422dee7ce3f90',t:'MTc1Njg5MDg1OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
