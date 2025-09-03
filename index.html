@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abhay Mishra - Crafting Digital Experiences</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -40,6 +41,26 @@
         .skill-orb { background: radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.8), rgba(255, 0, 128, 0.6)); }
         .terminal-cursor { animation: blink 1s infinite; }
         @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+        .notification { 
+            position: fixed; 
+            top: 20px; 
+            right: 20px; 
+            z-index: 1000; 
+            max-width: 400px; 
+            transform: translateX(100%); 
+            transition: transform 0.3s ease-out; 
+        }
+        .notification.show { transform: translateX(0); }
+        .notification-success { 
+            background: linear-gradient(135deg, rgba(57, 255, 20, 0.1) 0%, rgba(0, 217, 255, 0.1) 100%); 
+            border: 1px solid rgba(57, 255, 20, 0.5); 
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.3); 
+        }
+        .notification-error { 
+            background: linear-gradient(135deg, rgba(255, 0, 128, 0.1) 0%, rgba(255, 69, 0, 0.1) 100%); 
+            border: 1px solid rgba(255, 0, 128, 0.5); 
+            box-shadow: 0 0 20px rgba(255, 0, 128, 0.3); 
+        }
     </style>
 </head>
 <body class="bg-deep text-white overflow-x-hidden">
@@ -58,10 +79,24 @@
                     <a href="#contact" class="text-gray-300 hover:text-electric transition-colors duration-300">[contact]</a>
                 </div>
                 <button id="mobile-menu" class="md:hidden text-electric">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
+                    <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
                 </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-nav" class="md:hidden hidden bg-deep/95 backdrop-blur-xl border-t border-electric/20">
+                <div class="px-6 py-4 space-y-4 font-mono text-sm">
+                    <a href="#hero" class="block text-gray-300 hover:text-electric transition-colors duration-300 py-2">[home]</a>
+                    <a href="#about" class="block text-gray-300 hover:text-electric transition-colors duration-300 py-2">[about]</a>
+                    <a href="#projects" class="block text-gray-300 hover:text-electric transition-colors duration-300 py-2">[projects]</a>
+                    <a href="#skills" class="block text-gray-300 hover:text-electric transition-colors duration-300 py-2">[skills]</a>
+                    <a href="#contact" class="block text-gray-300 hover:text-electric transition-colors duration-300 py-2">[contact]</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -71,7 +106,7 @@
         <div class="absolute inset-0 bg-gradient-to-br from-deep via-slate to-deep opacity-90"></div>
         <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
             <!-- Avatar -->
-            <div class="mb-16 floating">
+            <div class="mb-16 mt-20 floating">
                 <div class="w-48 h-48 mx-auto relative">
                     <div class="absolute inset-0 rounded-full bg-gradient-to-br from-electric via-neon to-cyber animate-spin" style="animation-duration: 8s;"></div>
                     <div class="absolute inset-3 rounded-full bg-deep flex items-center justify-center">
@@ -214,12 +249,12 @@
                             </div>
                             
                             <div class="flex gap-4">
-                                <button class="bg-gradient-to-r from-electric to-neon text-deep px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-electric/30 transition-all duration-300">
+                                <a href="https://pee-kaboo.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-electric to-neon text-deep px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-electric/30 transition-all duration-300">
                                     Live Demo
-                                </button>
-                                <button class="border border-electric text-electric px-6 py-2 rounded-lg hover:bg-electric hover:text-deep transition-all duration-300">
+                                </a>
+                                <a href="https://github.com/Abhay7286/PeeK" target="_blank" rel="noopener noreferrer" class="border border-electric text-electric px-6 py-2 rounded-lg hover:bg-electric hover:text-deep transition-all duration-300">
                                     Source Code
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -256,12 +291,12 @@
                             </div>
                             
                             <div class="flex gap-4">
-                                <button class="bg-gradient-to-r from-neon to-electric text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-neon/30 transition-all duration-300">
+                                <a href="https://huntly-eight.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-neon to-electric text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-neon/30 transition-all duration-300">
                                     Explore Platform
-                                </button>
-                                <button class="border border-neon text-neon px-6 py-2 rounded-lg hover:bg-neon hover:text-white transition-all duration-300">
+                                </a>
+                                <a href="https://github.com/Abhay7286/Huntly-FE" target="_blank" rel="noopener noreferrer" class="border border-neon text-neon px-6 py-2 rounded-lg hover:bg-neon hover:text-white transition-all duration-300">
                                     View Code
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -371,16 +406,16 @@
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label class="block font-mono text-sm text-electric mb-2">const name =</label>
-                            <input type="text" class="w-full bg-deep/50 border border-electric/30 rounded-lg px-4 py-3 text-white focus:border-electric focus:outline-none focus:ring-2 focus:ring-electric/20 transition-all duration-300" placeholder='"Your Name"' required>
+                            <input type="text" name="from_name" class="w-full bg-deep/50 border border-electric/30 rounded-lg px-4 py-3 text-white focus:border-electric focus:outline-none focus:ring-2 focus:ring-electric/20 transition-all duration-300" placeholder='"Your Name"' required>
                         </div>
                         <div>
                             <label class="block font-mono text-sm text-neon mb-2">const email =</label>
-                            <input type="email" class="w-full bg-deep/50 border border-neon/30 rounded-lg px-4 py-3 text-white focus:border-neon focus:outline-none focus:ring-2 focus:ring-neon/20 transition-all duration-300" placeholder='"your@email.com"' required>
+                            <input type="email" name="from_email" class="w-full bg-deep/50 border border-neon/30 rounded-lg px-4 py-3 text-white focus:border-neon focus:outline-none focus:ring-2 focus:ring-neon/20 transition-all duration-300" placeholder='"your@email.com"' required>
                         </div>
                     </div>
                     <div>
                         <label class="block font-mono text-sm text-cyber mb-2">const message =</label>
-                        <textarea rows="6" class="w-full bg-deep/50 border border-cyber/30 rounded-lg px-4 py-3 text-white focus:border-cyber focus:outline-none focus:ring-2 focus:ring-cyber/20 transition-all duration-300" placeholder='"Tell me about your project..."' required></textarea>
+                        <textarea rows="6" name="message" class="w-full bg-deep/50 border border-cyber/30 rounded-lg px-4 py-3 text-white focus:border-cyber focus:outline-none focus:ring-2 focus:ring-cyber/20 transition-all duration-300" placeholder='"Tell me about your project..."' required></textarea>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="bg-gradient-to-r from-electric via-neon to-cyber text-deep px-12 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-electric/30 transition-all duration-300 transform hover:scale-105">
@@ -390,26 +425,40 @@
                 </form>
             </div>
 
+
+
             <!-- Contact Links -->
-            <div class="flex justify-center space-x-8 mt-12">
-                <a href="mailto:abhay.mishra@email.com" class="text-electric hover:text-white transition-colors duration-300 flex items-center space-x-2">
+            <div class="flex flex-wrap justify-center gap-6 mt-12">
+                <a href="mailto:abhaymishra7286@gmail.com" class="text-electric hover:text-white transition-colors duration-300 flex items-center space-x-2">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                         <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                     </svg>
                     <span class="font-mono">Email</span>
                 </a>
-                <a href="#" class="text-neon hover:text-white transition-colors duration-300 flex items-center space-x-2">
+                <a href="https://www.linkedin.com/in/abhay~mishra/" target="_blank" rel="noopener noreferrer" class="text-neon hover:text-white transition-colors duration-300 flex items-center space-x-2">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                     </svg>
                     <span class="font-mono">LinkedIn</span>
                 </a>
-                <a href="#" class="text-cyber hover:text-white transition-colors duration-300 flex items-center space-x-2">
+                <a href="https://github.com/Abhay7286" target="_blank" rel="noopener noreferrer" class="text-cyber hover:text-white transition-colors duration-300 flex items-center space-x-2">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
                     <span class="font-mono">GitHub</span>
+                </a>
+                <a href="https://leetcode.com/u/Abhay_7286/" target="_blank" rel="noopener noreferrer" class="text-electric hover:text-white transition-colors duration-300 flex items-center space-x-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/>
+                    </svg>
+                    <span class="font-mono">LeetCode</span>
+                </a>
+                <a href="https://www.instagram.com/abhay.m_2355/" target="_blank" rel="noopener noreferrer" class="text-neon hover:text-white transition-colors duration-300 flex items-center space-x-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    <span class="font-mono">Instagram</span>
                 </a>
             </div>
         </div>
@@ -426,10 +475,80 @@
     </footer>
 
     <script>
+        // Custom notification system
+        function showNotification(message, type = 'success', duration = 5000) {
+            // Remove any existing notifications
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type === 'success' ? 'notification-success' : 'notification-error'} rounded-xl p-6 backdrop-blur-xl`;
+            
+            const icon = type === 'success' ? '🚀' : '❌';
+            const titleColor = type === 'success' ? 'text-cyber' : 'text-neon';
+            const title = type === 'success' ? 'Message Sent!' : 'Send Failed';
+            
+            notification.innerHTML = `
+                <div class="flex items-start space-x-4">
+                    <div class="text-2xl">${icon}</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold ${titleColor} text-lg mb-2">${title}</h4>
+                        <p class="text-gray-300 text-sm leading-relaxed">${message}</p>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            `;
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Trigger animation
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            // Auto remove after duration
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, duration);
+        }
+
         // Mobile menu toggle
         document.getElementById('mobile-menu').addEventListener('click', function() {
-            // Mobile menu functionality would go here
-            console.log('Mobile menu clicked');
+            const mobileNav = document.getElementById('mobile-nav');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            
+            // Toggle mobile menu visibility
+            mobileNav.classList.toggle('hidden');
+            
+            // Toggle icons
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                const mobileNav = document.getElementById('mobile-nav');
+                const menuIcon = document.getElementById('menu-icon');
+                const closeIcon = document.getElementById('close-icon');
+                
+                // Hide mobile menu
+                mobileNav.classList.add('hidden');
+                
+                // Reset icons
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
         });
 
         // Smooth scrolling for navigation
@@ -446,24 +565,77 @@
             });
         });
 
+        // EmailJS Configuration - Now configured with your credentials
+        const EMAILJS_CONFIG = {
+            publicKey: "jVUkPrXZHHybDjMP-",    // Your EmailJS public key
+            serviceId: "service_jqedrxq",      // Your EmailJS service ID
+            templateId: "template_i6302ca"     // Your EmailJS template ID
+        };
+        
+        // Check if EmailJS is configured
+        const isEmailJSConfigured = EMAILJS_CONFIG.publicKey !== "YOUR_PUBLIC_KEY" && 
+                                   EMAILJS_CONFIG.serviceId !== "YOUR_SERVICE_ID" && 
+                                   EMAILJS_CONFIG.templateId !== "YOUR_TEMPLATE_ID";
+        
+        // Initialize EmailJS only if configured
+        if (isEmailJSConfigured) {
+            emailjs.init(EMAILJS_CONFIG.publicKey);
+        }
+        
         // Contact form submission
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
             // Get form data
-            const name = this.querySelector('input[type="text"]').value;
-            const email = this.querySelector('input[type="email"]').value;
-            const message = this.querySelector('textarea').value;
+            const formData = new FormData(this);
+            const name = formData.get('from_name');
+            const email = formData.get('from_email');
+            const message = formData.get('message');
             
             // Simple validation
             if (!name || !email || !message) {
-                alert('Please fill in all fields.');
+                showNotification('Please fill in all fields before submitting.', 'error');
                 return;
             }
             
-            // Show success message
-            alert('Message sent successfully! I\'ll get back to you soon.');
-            this.reset();
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending Message...';
+            submitBtn.disabled = true;
+            
+            // Check if EmailJS is configured
+            if (!isEmailJSConfigured) {
+                // Fallback behavior when EmailJS is not configured
+                setTimeout(() => {
+                    showNotification(`Thanks ${name}! Your message has been received. Since EmailJS isn't set up yet, please contact me directly at: abhaymishra7286@gmail.com`, 'success');
+                    this.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 1000);
+                return;
+            }
+            
+            // Send email using EmailJS (when configured)
+            emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, {
+                from_name: name,
+                from_email: email,
+                message: message,
+                to_email: "abhaymishra7286@gmail.com"
+            })
+            .then(function(response) {
+                showNotification(`Thanks ${name}! Your message has been sent successfully. I'll get back to you soon!`, 'success');
+                document.getElementById('contact-form').reset();
+            })
+            .catch(function(error) {
+                showNotification('Failed to send message. Please try again or contact me directly at abhaymishra7286@gmail.com', 'error');
+                console.error('EmailJS error:', error);
+            })
+            .finally(function() {
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
         });
 
         // Add scroll-triggered animations
@@ -508,5 +680,5 @@
         // Create particles periodically
         setInterval(createParticle, 300);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'979422dee7ce3f90',t:'MTc1Njg5MDg1OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'979462a1d17c836f',t:'MTc1Njg5MzQ3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
